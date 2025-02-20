@@ -56,7 +56,7 @@ exports.userLogin = async (req, res) => {
             payload,
             process.env.SECRET,
             {
-                expiresIn: 180
+                expiresIn: 3600
             },
             (error, token) => {
                 if (error) throw error;
@@ -71,6 +71,23 @@ exports.userLogin = async (req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Error al iniciar sesión' });
+    }
+}
+
+exports.verifyPassword = async (req, res) => {
+    const { password } = req.body;
+    const { id } = req.params;
+    try{
+        const user = await User.findById(id);
+        const rightPassword = await bcryptjs.compare(password, user.password);
+        if(rightPassword){
+            return res.status(200).json({ message: 'La contraseña corresponde' });
+        }
+        if(!rightPassword){
+            return res.status(400).json({ message: 'La contraseña NO corresponde' });
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -97,7 +114,7 @@ exports.addProductToCart = async (req, res) => {
     }
 };
 
-exports.removeProductFromCart = async (req, res) => {
+exports.substractProductQuantityFromCart = async (req, res) => {
     const { userId, productId } = req.body;
     try {
         const user = await User.findById(userId);
@@ -109,9 +126,28 @@ exports.removeProductFromCart = async (req, res) => {
         if(user.cart[productIndex].quantity > 1){
             user.cart[productIndex].quantity -= 1;
         } else {
-            user.cart.splice(productIndex, 1);
+
         }
 
+        await user.save();
+        res.status(200).json({ cart: user.cart });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al quitar producto del carrito' });
+    }
+}
+
+exports.removeProductFromCart = async (req, res) => {
+    const { userId, productId } = req.body;
+    try {
+        const user = await User.findById(userId);
+        const productIndex = user.cart.findIndex(item => item.productId.toString() === productId);
+        if (productIndex === -1) {
+            return res.status(200).json({ cart: user.cart, message: "Producto no encontrado en el carrito" }); 
+        }
+
+        user.cart.splice(productIndex, 1);
         await user.save();
         res.status(200).json({ cart: user.cart });
 

@@ -15,6 +15,7 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: 'Acceso no autorizado' });
         }
     } catch (error) {
+        console.error(error);
         return res.status(401).json({ message: 'Error al verificar usuario' });
     }
 }
