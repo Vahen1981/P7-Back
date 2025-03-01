@@ -7,7 +7,7 @@ const auth = require('../middleware/Authorization');
 userRouter.post('/register', registerUser);
 userRouter.get('/all-users', getAllUsers);
 userRouter.post('/login', userLogin);
-userRouter.get('/verify', auth, userVerify);
+userRouter.get('/verify-user', auth, userVerify);
 userRouter.put('/update', auth, updateVerifiedUser);
 userRouter.delete('/delete', auth, deleteVerifiedUser);
 userRouter.put('/addToCart', auth, addProductToCart);
