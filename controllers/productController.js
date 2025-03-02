@@ -123,31 +123,22 @@ exports.createProduct = async (req, res) => {
   try {
     const { title, price, description, category, image, rating, quantity } = req.body;
 
-    // Validar los datos recibidos
     if (!title || !price || !description || !category || !image || !rating || !quantity) {
       return res.status(400).json({ error: 'Faltan datos requeridos.' });
     }
 
-    // Crear el producto en Stripe
-    console.log('Creando producto en Stripe...');
     const stripeProduct = await stripe.products.create({
       name: title,
       description: description,
       images: [image],
     });
 
-    console.log('Producto creado en Stripe:', stripeProduct);
-
-    // Crear el precio en Stripe
     const stripePrice = await stripe.prices.create({
       product: stripeProduct.id,
-      unit_amount: price * 100, // Convertir a centavos
-      currency: "usd",
+      unit_amount: product.price,
+      currency: 'clp',
     });
 
-    console.log('Precio creado en Stripe:', stripePrice);
-
-    // Crear y guardar el producto en MongoDB con los IDs de Stripe
     const newProduct = await Product.create({
       title,
       price,
@@ -160,9 +151,6 @@ exports.createProduct = async (req, res) => {
       stripePriceId: stripePrice.id,
     });
 
-    console.log('Producto guardado en MongoDB:', newProduct);
-
-    // Responder con el producto creado
     res.status(201).json(newProduct);
   } catch (error) {
     console.error('Error al crear el producto:', error);

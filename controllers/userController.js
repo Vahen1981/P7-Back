@@ -92,17 +92,17 @@ exports.verifyPassword = async (req, res) => {
 }
 
 exports.addProductToCart = async (req, res) => {
-    const { userId, productId } = req.body;
+    const { userId, productId, stripeProductId } = req.body;
     try {
         const user = await User.findById(userId);
-        
+
         const productExists = user.cart.some(item => item.productId.toString() === productId);
 
         if (productExists) {
             const productIndex = user.cart.findIndex(item => item.productId.toString() === productId);
             user.cart[productIndex].quantity += 1;
         } else {
-            user.cart.push({ productId, quantity: 1 });
+            user.cart.push({ productId, stripe_product_id: stripeProductId, quantity: 1 });
         }
 
         await user.save();
@@ -113,6 +113,7 @@ exports.addProductToCart = async (req, res) => {
         res.status(500).json({ message: 'Error al agregar el producto al carrito' });
     }
 };
+
 
 exports.substractProductQuantityFromCart = async (req, res) => {
     const { userId, productId } = req.body;

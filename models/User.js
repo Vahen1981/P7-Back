@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema(
                     ref: 'Product',
                     required: true
                 },
+                stripe_product_id: {
+                    type: String,
+                    required: true
+                },
                 quantity: {
                     type: Number,
                     required: true,
