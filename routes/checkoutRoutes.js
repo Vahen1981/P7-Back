@@ -5,6 +5,6 @@ const { createCheckoutSession } = require('../controllers/checkoutController');
 
 
 
-checkoutRouter.get('/', createCheckoutSession); //http://localhost:8000/api/checkout
+checkoutRouter.post('/', auth, createCheckoutSession); //http://localhost:8000/api/checkout
 
 module.exports = checkoutRouter;
