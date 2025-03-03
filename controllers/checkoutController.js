@@ -32,8 +32,8 @@ exports.createCheckoutSession = async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'https://youtube.com',
-            cancel_url: 'https://facebook.com',
+            success_url: 'http://localhost:5173/successful-payment',
+            cancel_url: 'http://localhost:5173/failed-payment',
         });
 
         return res.json({ session_url: session.url });
