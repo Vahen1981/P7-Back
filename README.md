@@ -61,7 +61,11 @@ Descarga y sigue las instrucciones del frontend aquí: [link](https://github.com
     STRIPE_SECRET_KEY=TU_STRIPE_KEY
    ```
 
-4. **Inicia la aplicación frontend**:
+4. **Modifica las url de stripe**:
+
+Para ejecutarlo en tu entorno local debes descomentar las líneas 35 y 36, y comentar las líneas 37 y 38 del archivo `controller/checkoutController.jsx`
+
+5. **Inicia la aplicación frontend**:
 Utliza nodemon para desarrollo
 
    ```bash

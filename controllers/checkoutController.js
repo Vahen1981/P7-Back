@@ -34,7 +34,6 @@ exports.createCheckoutSession = async (req, res) => {
             mode: 'payment',
             //success_url: 'http://localhost:5173/successful-payment',
             //cancel_url: 'http://localhost:5173/failed-payment',
-            // Descomentar las siguientes líneas para el despliegue en railway
             success_url: 'https://p7-front-production.up.railway.app/successful-payment',
             cancel_url: 'https://p7-front-production.up.railway.app/failed-payment',
         });
