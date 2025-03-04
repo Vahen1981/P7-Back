@@ -2,7 +2,7 @@
 
 Este proyecto corresponde al backend de la app fullstack KüpanStore, aplicación web de comercio electrónico, cuyo frontend se encuentra en el siguiente repositorio: https://github.com/Vahen1981/P7-Front 
 
-En el caso de querer acceder al servidor que actualmente esta desplegado en la web, es posible hacerlo con este enlace: railway
+En el caso de querer hacer llamadas a la api actualmente desplegada en railway, es posible hacerlo con este enlace: `https//:railwayp7-back-production.up.railway.app`
 
 Este repositorio contiene únicamente el backend de la aplicación.
 
