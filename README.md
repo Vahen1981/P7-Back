@@ -79,7 +79,7 @@ El servidor estará disponible en `http://localhost:8000`.
 
 La mayoría de las operaciones CRUD serán manejadas por el frontend a excepción de la creación de productos para las cuales deberás hacer una solicitud con el método `POST` a la siguiente dirección: `http://localhost:8000/api/products/create`
 
-Si se desea crea un nuevo producto en el servidor actualmente desplegado en la web, se puede hacer la solicitud `POST` en el siguiente enlace: railway
+Si se desea crea un nuevo producto en el servidor actualmente desplegado en la web, se puede hacer la solicitud `POST` en el siguiente enlace: `https://p7-back-production.up.railway.app/api/products/create`
 
 Junto con la solicitud se debe incluir un json en el body que contenga los campos del siguiente ejemplo:
 
