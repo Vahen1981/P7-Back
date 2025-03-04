@@ -32,10 +32,11 @@ exports.createCheckoutSession = async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            // success_url: 'http://localhost:5173/successful-payment',
-            // cancel_url: 'http://localhost:5173/failed-payment',
-            success_url: 'https://p7-front-production.up.railway.app/successful-payment',
-            cancel_url: 'https://p7-front-production.up.railway.app/failed-payment',
+            success_url: 'http://localhost:5173/successful-payment',
+            cancel_url: 'http://localhost:5173/failed-payment',
+            // Descomentar las siguientes líneas para el despliegue en railway
+            // success_url: 'https://p7-front-production.up.railway.app/successful-payment',
+            // cancel_url: 'https://p7-front-production.up.railway.app/failed-payment',
         });
 
         return res.json({ session_url: session.url });
