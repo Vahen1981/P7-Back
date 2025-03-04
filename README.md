@@ -79,8 +79,6 @@ El servidor estará disponible en `http://localhost:8000`.
 
 La mayoría de las operaciones CRUD serán manejadas por el frontend a excepción de la creación de productos para las cuales deberás hacer una solicitud con el método `POST` a la siguiente dirección: `http://localhost:8000/api/products/create`
 
-Si se desea crea un nuevo producto en el servidor actualmente desplegado en la web, se puede hacer la solicitud `POST` en el siguiente enlace: `https://p7-back-production.up.railway.app/api/products/create`
-
 Junto con la solicitud se debe incluir un json en el body que contenga los campos del siguiente ejemplo:
 
 ```json
@@ -97,7 +95,9 @@ Junto con la solicitud se debe incluir un json en el body que contenga los campo
     "quantity": 10
 }
 ```
-El controlador creará un nuevo producto primero en stripe, desde donde obtendrá el id que stripe le otorgará, para luego crear el producto en mongodb atlas, en donde se incluirá también el id creado por stripe.
+El controlador creará un nuevo producto en stripe y luego creará el producto en mongodb atlas.
+
+Si se desea crea un nuevo producto en el servidor actualmente desplegado en la web, sigue los pasos antes listados, pero haciendo la solicitud `POST` en la siguiente url: `https://p7-back-production.up.railway.app/api/products/create`
 
 Para que el frontend pueda listar el nuevo producto en alguna categoría, el campo "category" debe tener alguna de estas opciones:
     `"men's clothing"`
