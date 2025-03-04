@@ -33,7 +33,7 @@ Este repositorio contiene únicamente el backend de la aplicación.
 Para ejecutar el proyecto en tu entorno local descarga y sigue las instrucciones listadas abajo.
 
 ### Frontend
-Descarga y sigue las instrucciones del backend aquí: [link](https://github.com/Vahen1981/P7-Front)
+Descarga y sigue las instrucciones del frontend aquí: [link](https://github.com/Vahen1981/P7-Front)
 
 ### Backend
 
